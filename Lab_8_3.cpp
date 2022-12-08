@@ -157,6 +157,7 @@ public:
     Iterator end() { return Iterator(nullptr); }
 };
 
+
 template <class A>
 void SomethingType()
 {
@@ -165,8 +166,8 @@ void SomethingType()
     bool ClassUnique = (getchar() == 'Y');
 
     SinglyLinkedList<A> array = *(new SinglyLinkedList<A>(ClassUnique));
-
-    A temp;
+    A OK;
+    char temp;
     bool End = false;
     try
     {
@@ -177,10 +178,15 @@ void SomethingType()
             switch (getchar())
             {
             case 'a':
-                rewind(stdin);
                 cout << "Push element: ";
-                cin >> temp;
-                array.Push(temp);
+                rewind(stdin);
+                cin >> OK;
+                //BLYAT_A
+                temp = getchar();
+                if (temp != '\n')
+                    throw "Incorrect input";
+
+                array.Push(OK);
                 break;
             case 'b':
                 array.Print();
@@ -188,8 +194,13 @@ void SomethingType()
             case 'c':
                 rewind(stdin);
                 cout << "What element to look for: ";
-                cin >> temp;
-                if (array.Search(temp) == NULL)
+                cin >> OK;
+                //BLYAT_C
+                temp = getchar();
+                if (temp != '\n')
+                    throw "Incorrect input";
+
+                if (array.Search(OK) == NULL)
                     cout << "Not exist" << endl;
                 else
                     cout << "Exist" << endl;
@@ -197,8 +208,13 @@ void SomethingType()
             case 'd':
                 rewind(stdin);
                 cout << "Which element to delete: ";
-                cin >> temp;
-                array.Remove(temp);
+                cin >> OK;
+                //BLYAT_D
+                temp = getchar();
+                if (temp != '\n')
+                    throw "Incorrect input";
+
+                array.Remove(OK);
                 break;
             case 'e':
                 End = true;
@@ -222,7 +238,7 @@ int main()
     int check = 1;
     do
     {
-        cout << "Input variable type: ";
+        cout << "Input variable type (int/float/double/string): ";
         cin >> type;
 
         if (!type.compare("int"))
